@@ -2,6 +2,10 @@
 
 :root {
    font-family: 'Lato';
+   --byellow: rgb(247, 207, 81);
+   --bblue: rgb(36, 88, 149);
+   --blue1: rgb(39, 116, 203);
+   --blue2: rgb(67, 154, 252);
 }
 
 @media (prefers-color-scheme: dark) {
