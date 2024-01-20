@@ -1,17 +1,12 @@
-import Image from "next/image";
-import { Link } from "@mui/material";
-
-import styles from "@/styles/page.module.css";
-
 import Map from "@/components/map";
+import Nav from "@/components/nav";
+import CollegeLayout from "@/components/collegeLayout";
 
 export default function Home() {
    return (
       <>
+         <Nav></Nav>
          <Map></Map>
-         <Link href="/c9" sx={{ backgroundColor: "red" }}>
-            Click me
-         </Link>
       </>
    )
 }
