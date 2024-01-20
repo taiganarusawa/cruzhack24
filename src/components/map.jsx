@@ -9,12 +9,35 @@ export default function Map() {
    if (!isLoaded) return <div>Loading...</div>
 
    return (
-      <GoogleMap
-         mapContainerStyle={{ width: "100vw", height: "100vh" }}
-         zoom={8}
-         center={{ lat: 37.7749, lng: -122.4194 }}
-      >
-         <Marker position={{ lat: 37.7749, lng: -122.4194 }} />
-      </GoogleMap>
+      <MapComponent />
+   );
+}
+
+function MapComponent() {
+   const mapContainerStyle = useMemo(() => ({
+      width: "100vw",
+      height: "100vh",
+   }), []);
+
+   const center = useMemo(() => ({
+      lat: 36.9914,
+      lng: -122.0583,
+   }), []);
+
+   // restrict zoom to 15
+   const options = useMemo(() => ({
+      disableDefaultUI: true,
+      zoomControl: true,
+      minZoom: 15,
+      maxZoom: 20,
+   }), []);
+
+   return (
+      <GoogleMap 
+         mapContainerStyle={mapContainerStyle} 
+         zoom={15} 
+         center={center} 
+         options={options}
+      ></GoogleMap>
    );
 }
