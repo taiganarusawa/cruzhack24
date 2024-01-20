@@ -9,9 +9,9 @@ export default function Home() {
    return (
       <>
          <Map></Map>
-         <Link href="/c9" sx={{ backgroundColor: "red" }}>
+         {/* <Link href="/c9" sx={{ backgroundColor: "red" }}>
             Click me
-         </Link>
+         </Link> */}
       </>
    )
 }
