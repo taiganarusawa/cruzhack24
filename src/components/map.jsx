@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 
 export default function Map() {
@@ -14,10 +14,26 @@ export default function Map() {
 }
 
 function MapComponent() {
-   const mapContainerStyle = useMemo(() => ({
+   const [mapContainerStyle, setMapContainerStyle] = useState({
       width: "100vw",
       height: "100vh",
-   }), []);
+   });
+
+   const updateMapContainerStyle = () => {
+      setMapContainerStyle({
+         width: `${window.innerWidth}px`,
+         height: `${window.innerHeight * 0.9}px`,
+      });
+   };
+
+   useEffect(() => {
+      updateMapContainerStyle();
+      window.addEventListener('resize', updateMapContainerStyle);
+
+      return () => {
+         window.removeEventListener('resize', updateMapContainerStyle);
+      };
+   }, []);
 
    const center = useMemo(() => ({
       lat: 36.9914,
@@ -68,7 +84,7 @@ function MapComponent() {
    const mapId = "5aaced86c28e57ee";
 
    return (
-      <GoogleMap 
+      <GoogleMap
          mapContainerStyle={mapContainerStyle} 
          center={center} zoom={15} 
          options={options}
