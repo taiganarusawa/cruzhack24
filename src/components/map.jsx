@@ -22,7 +22,7 @@ function MapComponent() {
    const updateMapContainerStyle = () => {
       setMapContainerStyle({
          width: `${window.innerWidth}px`,
-         height: `${window.innerHeight * 0.9}px`,
+         height: `${window.innerHeight}px`,
       });
    };
 
