@@ -4,8 +4,8 @@ import Nav from "@/components/nav";
 export default function Home() {
    return (
       <>
-         <Nav></Nav>
-         <Map></Map>
+         <Nav />
+         <Map />
       </>
    )
 }
