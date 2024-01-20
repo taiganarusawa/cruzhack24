@@ -30,6 +30,39 @@ function MapComponent() {
       zoomControl: true,
       minZoom: 15,
       maxZoom: 20,
+      // set lat/lng bounds
+      restriction: {
+         latLngBounds: {
+            north: 37.01,
+            south: 36.975,
+            west: -122.09,
+            east: -122.03,
+         },
+      },
+
+      // set map styles
+      // no lables or points of interest
+      styles: [
+         {
+            featureType: "poi",
+            stylers: [
+               { visibility: "off" },
+            ],
+         },
+         {
+            featureType: "poi.business",
+            stylers: [
+               { visibility: "off" },
+            ],
+         },
+         {
+            featureType: "transit",
+            elementType: "labels.icon",
+            stylers: [
+               { visibility: "off" },
+            ],
+         },
+      ],
    }), []);
 
    const mapId = "5aaced86c28e57ee";
