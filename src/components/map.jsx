@@ -1,6 +1,62 @@
 import { useMemo, useState, useEffect } from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 
+// let map;
+
+// const initMap = () => {
+//    map = new google.maps.Map(document.getElementById("map"), {
+//       center: { lat: 36.9914, lng: -122.0583 },
+//       zoom: 15,
+//       restriction: {
+//          latLngBounds: {
+//             north: 37.01,
+//             south: 36.975,
+//             west: -122.09,
+//             east: -122.03,
+//          },
+//       },
+//       styles: [
+//          {
+//             featureType: "poi",
+//             stylers: [
+//                { visibility: "off" },
+//             ],
+//          },
+//          {
+//             featureType: "poi.business",
+//             stylers: [
+//                { visibility: "off" },
+//             ],
+//          },
+//          {
+//             featureType: "transit",
+//             elementType: "labels.icon",
+//             stylers: [
+//                { visibility: "off" },
+//             ],
+//          },
+//       ],
+//    });
+// };
+
+// const Map = () => {
+//    const { isLoaded } = useLoadScript({
+//       googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+//    });
+
+//    useEffect(() => {
+//       initMap();
+//    }, []);
+
+//    if (!isLoaded) return <div>Loading...</div>;
+
+//    return (
+//       <div id="map"></div>
+//    );
+// }
+
+// export default Map;
+
 export default function Map() {
    const { isLoaded } = useLoadScript({ 
       googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY, 
