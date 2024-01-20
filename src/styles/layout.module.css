@@ -1,0 +1,146 @@
+.collegeName {
+   font-family: 'Bebas Neue';
+   font-weight: 400;
+   font-size: 36px;
+
+   text-align: center;
+   user-select: none;
+
+   color: var(--bblue);
+}
+
+.collegeInfoBox {
+   display: flex;
+   justify-content: center;
+}
+
+.officialInfoBox,
+.studentInfoBox {
+   padding: 20px;
+   width: calc(35vw);
+
+}
+
+.collegeInfoHeaders {
+
+   font-family: 'Lato';
+   font-weight: 400;
+   font-style: normal;
+   font-size: 20px;
+
+   height: 40px;
+
+   border: 2px var(--byellow) solid;
+   border-top: 0px;
+   border-left: 0px;
+   border-right: 0px;
+}
+
+.collegeInfoDesc {
+
+   font-family: 'Lato';
+   font-weight: 400;
+   font-style: normal;
+   font-size: 16px;
+
+   color: var(--jet);
+   padding: 12px;
+}
+
+.scrollableContainerRoot {
+
+   margin-top: 20px;
+   /* overflow-x: hidden; */
+
+   width: 100%;
+   /* height: calc(50vh); */
+   display: flex;
+   justify-content: center;
+
+   position: relative;
+}
+
+.scrollableContainer {
+   width: 840px;
+   position: relative;
+   /* background-color: #edf3f6; */
+   /* overflow-x: hidden; */
+}
+
+/* 
+.scrollableContainer::-webkit-scrollbar {
+   display: none;
+} */
+
+/* Used for custom css for grid item padding */
+@media screen and (min-width: 1000px) {
+   .scrollableContainer .reviewBoxCont:nth-child(even) {
+      margin-left: 20px;
+   }
+
+   .scrollableContainer .reviewBoxCont:nth-child(odd) {
+      margin-right: 20px;
+   }
+
+   .scrollableContainer .reviewBoxCont:nth-child(-n + 2)>.reviewBox {
+      margin-top: 0px;
+   }
+}
+
+.reviewBox {
+   margin: 12px 0;
+   background-color: #f5f5f5;
+   /* height: 300px; */
+   width: 400px;
+
+   border-radius: 4px;
+}
+
+.reviewInfoCont {
+   background-color: white;
+   padding: 0px 8px;
+}
+
+.reviewInfoTitleCont {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   padding-bottom: 8px;
+}
+
+.reviewInfoTitle {
+   font-family: "Lato";
+   font-weight: 400;
+   color: var(--jet);
+
+   height: 28px;
+   line-height: 24px;
+   font-size: 18px;
+
+   overflow: hidden;
+   max-width: 200px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.reviewInfoMain {
+   padding-top: 8px;
+   border-top: 1px var(--jet) solid;
+   max-height: 135px;
+   overflow-y: scroll;
+}
+
+.reviewInfoText {
+   font-family: "Lato";
+   font-weight: 300;
+}
+
+.reviewAuthor {
+   margin-left: 10px;
+   font-family: "Lato";
+   font-weight: 300;
+   font-size: 12px;
+   color: black;
+   padding: 2px;
+   padding-bottom: 6px;
+}
