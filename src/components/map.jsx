@@ -13,6 +13,35 @@ export default function Map() {
    );
 }
 
+function mapStyle() {
+   [
+      {
+        "elementType": "labels",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "administrative.land_parcel",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "administrative.neighborhood",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      }
+    ]
+}
+
 function MapComponent() {
    const mapContainerStyle = useMemo(() => ({
       width: "100vw",
@@ -32,12 +61,15 @@ function MapComponent() {
       maxZoom: 20,
    }), []);
 
+   const mapId = "5aaced86c28e57ee";
+
    return (
       <GoogleMap 
          mapContainerStyle={mapContainerStyle} 
-         zoom={15} 
-         center={center} 
+         center={center} zoom={15} 
          options={options}
-      ></GoogleMap>
+         mapId={mapId}
+      >
+      </GoogleMap>
    );
 }
