@@ -21,16 +21,16 @@ export default function Colleges() {
 
    function collegesSwitch(college) {
       switch (college) {
-         case "collegenine": return <CollegeLayout data={c9Data}></CollegeLayout>
-         case "johnrlewis": return <CollegeLayout data={jrlData}></CollegeLayout>
-         case "stevenson": return <CollegeLayout data={stevensonData}></CollegeLayout>
-         case "cowell": return <CollegeLayout data={cowellData}></CollegeLayout>
-         case "oakes": return <CollegeLayout data={oakesData}></CollegeLayout>
-         case "rachelcarson": return <CollegeLayout data={rccData}></CollegeLayout>
-         case "porter": return <CollegeLayout data={porterData}></CollegeLayout>
-         case "kresge": return <CollegeLayout data={kresgeData}></CollegeLayout>
-         case "crown": return <CollegeLayout data={crownData}></CollegeLayout>
-         case "merrill": return <CollegeLayout data={merrillData}></CollegeLayout>
+         case "collegenine": return <CollegeLayout data={c9Data} urlname="collegenine"></CollegeLayout>
+         case "johnrlewis": return <CollegeLayout data={jrlData} urlname="johnrlewis"></CollegeLayout>
+         case "stevenson": return <CollegeLayout data={stevensonData} urlname="stevenson"></CollegeLayout>
+         case "cowell": return <CollegeLayout data={cowellData} urlname="cowell"></CollegeLayout>
+         case "oakes": return <CollegeLayout data={oakesData} urlname="oakes"></CollegeLayout>
+         case "rachelcarson": return <CollegeLayout data={rccData} urlname="rachelcarson"></CollegeLayout>
+         case "porter": return <CollegeLayout data={porterData} urlname="porter"></CollegeLayout>
+         case "kresge": return <CollegeLayout data={kresgeData} urlname="kresge"></CollegeLayout>
+         case "crown": return <CollegeLayout data={crownData} urlname="crown"></CollegeLayout>
+         case "merrill": return <CollegeLayout data={merrillData} urlname="merrill"></CollegeLayout>
          default: return <>No college found</>
       }
    }

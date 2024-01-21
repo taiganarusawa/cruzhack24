@@ -28,55 +28,84 @@ export default function Review() {
    }
 
    const handleImageUpload = () => {
-      // Do upload code here
+      // Do upload code here for files
    }
 
-   const handleSubmit = () => {
+   const handleReviewSubmit = (e) => {
+
+      if (files == []) return;
+
+      const formData = new FormData();
+
+      console.log(files);
+
+      for (let i = 0; i < files.length; i++) {
+         formData.append('files', files[i]);
+      }
+
+      formData.append('selectedCollege', selectedCollege);
+      formData.append('userName', name);
+      formData.append('collegeRating', collegeRating);
+      formData.append('condition', condition);
+      formData.append('briefReview', briefReview);
+      formData.append('totalPeopleInRoom', roommates);
+
+      fetch(`http://127.0.0.1:5000/api/createreview`, {
+         method: 'POST',
+         body: formData,
+
+      })
+         .then((response) => response.json())
+         .then((data) => {
+            console.log(data);
+         })
+         .catch(error => console.error(error));
       // Handle form submit
    }
 
    const [selectedCollege, setSelectedCollege] = useState('');
    const [name, setName] = useState('');
    const [collegeRating, setCollegeRating] = useState(0);
+   const [condition, setCondition] = useState("Maintained");
+   const [briefReview, setBriefReview] = useState("");
+   const [roommates, setRoommates] = useState(3);
 
    const [dormChosen, setDormChosen] = useState(false);
-
-   useEffect(() => {
-      console.log(dormChosen);
-   }, [dormChosen])
-
+   const [kitchen, setKitchen] = useState(false);
 
    return (
       <>
          <Nav />
          <Box className={styles.formUploadRoot}>
             <Typography className={styles.formUploadTitle}>Write a Review</Typography>
-            <FormControl className={styles.formControlBox}>
+            <form className={styles.formControlBox} encType="multipart/form-data">
                <Box className={styles.imageUploadRoot}>
-                  <Typography className={styles.formLabel}>Select Your Images</Typography>
-                  <Box className={styles.imageSelect}>
-                     <Button sx={{
-                        textAlign: "center",
-                        fontFamily: "Lato",
-                        fontWeight: "500",
-                        backgroundColor: "var(--byellow)",
-                        '&:hover': {
-                           backgroundColor: "var(--byellow)"
-                        },
-                        marginTop: "10px"
-                     }} component="label" variant="contained" endIcon={<CloudUploadIcon />} disableRipple>
-                        Select images
-                        <VisuallyHiddenInput type="file" onChange={e => handleImageSelect(e)} accept="image/*" multiple />
-                     </Button>
+                  <Box className={styles.imageUploadCont}>
+                     <Typography className={styles.formLabel}>Select Your Images</Typography>
+                     <Box className={styles.imageSelect}>
+                        <Button sx={{
+                           textAlign: "center",
+                           fontFamily: "Lato",
+                           fontWeight: "500",
+                           backgroundColor: "var(--byellow)",
+                           '&:hover': {
+                              backgroundColor: "var(--byellow)"
+                           },
+                           marginTop: "10px"
+                        }} component="label" variant="contained" endIcon={<CloudUploadIcon />} disableRipple>
+                           Select images
+                           <VisuallyHiddenInput type="file" name="files" onChange={e => handleImageSelect(e)} accept="image/*" multiple />
+                        </Button>
+                     </Box>
+                     <Box className={styles.previewImageBox}>
+                        {
+                           files != [] ? files.map((img, i) => {
+                              return <img src={URL.createObjectURL(img)} width={"160px"} height={"auto"}></img>
+                           }) : <></>
+                        }
+                     </Box>
+                     <Button className={styles.imageUploadBtn} onClick={handleImageUpload} style={{ "color": "var(--bblue)" }} disableFocusRipple>Upload Image</Button>
                   </Box>
-                  <Box className={styles.previewImageBox}>
-                     {
-                        files != [] ? files.map((img, i) => {
-                           return <img src={URL.createObjectURL(img)} width={"160px"} height={"auto"}></img>
-                        }) : <></>
-                     }
-                  </Box>
-                  <Button className={styles.imageUploadBtn} onClick={handleImageUpload} style={{ "color": "var(--bblue)" }} disableFocusRipple>Upload Image</Button>
                </Box>
                <Box className={styles.mainTextUploadContainer}>
                   <div className={styles.uploadGrid}>
@@ -92,9 +121,16 @@ export default function Review() {
                               width: "160px"
                            }}
                         >
-                           <MenuItem value={"College Nine"}>College Nine</MenuItem>
-                           <MenuItem value={"John R. Lewis"}>John R. Lewis</MenuItem>
-                           <MenuItem value={"Stevenson"}>Stevenson</MenuItem>
+                           <MenuItem value={"collegenine"}>College Nine</MenuItem>
+                           <MenuItem value={"johnrlewis"}>John R. Lewis</MenuItem>
+                           <MenuItem value={"stevenson"}>Stevenson</MenuItem>
+                           <MenuItem value={"cowell"}>Cowell</MenuItem>
+                           <MenuItem value={"crown"}>Crown</MenuItem>
+                           <MenuItem value={"merrill"}>Merrill</MenuItem>
+                           <MenuItem value={"porter"}>Porter</MenuItem>
+                           <MenuItem value={"kresge"}>Kresge</MenuItem>
+                           <MenuItem value={"rachelcarson"}>Rachel Carson</MenuItem>
+                           <MenuItem value={"oakes"}>Oakes</MenuItem>
                         </Select>
                      </Box>
                      <Box sx={{ gridArea: "authorName", width: "auto" }}>
@@ -129,6 +165,8 @@ export default function Review() {
                            rows={2}
                            maxRows={4}
                            sx={{ width: "100%" }}
+                           value={briefReview}
+                           onChange={(e) => setBriefReview(e.target.value)}
                         />
                      </Box>
                      <Box sx={{ gridArea: "checklist", width: "auto" }}>
@@ -137,19 +175,27 @@ export default function Review() {
                            <RadioGroup
                               defaultValue="Dorm"
                               name="radio-buttons-group"
-                              value={dormChosen}
+                              value={dormChosen ? "Dorm" : "Apartment"}
                               onChange={(e) => setDormChosen(e.target.value == "Dorm")}
                            >
                               <FormControlLabel value="Dorm" control={<Radio />} label="Dorm" />
                               <FormControlLabel value="Apartment" control={<Radio />} label="Apartment" />
                            </RadioGroup>
-                           <FormControlLabel control={<Checkbox />} label="Kitchen" />
-                           <FormControlLabel control={<Checkbox />} label="Community Kitchen" />
-                           <FormControlLabel control={<Checkbox />} label="Community Room" />
-                           <FormControlLabel control={<Checkbox />} label="Large Storage" />
-                           <FormControlLabel control={<Checkbox />} label="Bike Parking" />
-                           <FormControlLabel control={<Checkbox />} label="Parking Nearby" />
-                           <FormControlLabel control={<Checkbox />} label="Laundry Room" />
+                           {
+                              dormChosen ? <>
+                                 <FormControlLabel control={<Checkbox />} label="Kitchen" />
+                                 <FormControlLabel control={<Checkbox />} label="Community Room" />
+                                 <FormControlLabel control={<Checkbox />} label="Bike Parking" />
+                                 <FormControlLabel control={<Checkbox />} label="Parking Nearby" />
+                                 <FormControlLabel control={<Checkbox />} label="Parking Nearby" />
+                              </> : <>
+                                 <FormControlLabel control={<Checkbox />} label="Community Kitchen" />
+                                 <FormControlLabel control={<Checkbox />} label="Community Room" />
+                                 <FormControlLabel control={<Checkbox />} label="Bike Parking" />
+                                 <FormControlLabel control={<Checkbox />} label="Parking Nearby" />
+                              </>
+                           }
+
                         </FormGroup>
                      </Box>
                      <Box sx={{ gridArea: "checklistCondition", width: "auto" }}>
@@ -157,6 +203,7 @@ export default function Review() {
                         <RadioGroup
                            defaultValue="Maintained"
                            name="radio-buttons-group"
+                           onChange={(e) => setCondition(e.target.value)}
                         >
                            <FormControlLabel value="Maintained" control={<Radio />} label="Maintained" />
                            <FormControlLabel value="Run Down" control={<Radio />} label="Run Down" />
@@ -164,14 +211,29 @@ export default function Review() {
 
                         </RadioGroup>
                      </Box>
+                     <Box sx={{ gridArea: "roommateCount", width: "auto" }}>
+                        <Typography sx={{ paddingBottom: "4px", width: "auto" }}>How many roommates?</Typography>
+                        <Select
+                           value={roommates}
+                           onChange={(e) => setRoommates(e.target.value)}
+                           sx={{ width: "160px", height: "79px" }}
+                        >
+                           <MenuItem value={1}>Just me</MenuItem>
+                           <MenuItem value={2}>One other</MenuItem>
+                           <MenuItem value={3}>Two others</MenuItem>
+                           <MenuItem value={4}>Three others</MenuItem>
+                        </Select>
+                     </Box>
 
                   </div>
-                  <Button sx={{}}>
-                     Submit Review
-                  </Button>
                </Box>
-            </FormControl>
-         </Box>
+            </form >
+            <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+               <Button sx={{ padding: "12px 6px", margin: "20px 0px", color: "var(--blue1)", borderRadius: "8px" }} onClick={handleReviewSubmit}>
+                  Submit Review
+               </Button>
+            </Box>
+         </Box >
       </>
    )
 }
