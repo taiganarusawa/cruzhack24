@@ -1,0 +1,74 @@
+.formUploadRoot {
+   display: flex;
+   justify-content: center;
+   width: auto;
+
+   margin-top: 32px;
+   flex-wrap: wrap;
+}
+
+.formControlBox {
+   display: flex;
+   justify-content: center;
+
+   margin-top: 20px;
+}
+
+.imageUploadRoot {
+   /* display: flex;
+   justify-content: center;
+   flex-wrap: wrap; */
+
+   /* width: 200px; */
+}
+
+.formUploadTitle {
+   font-family: "Lato";
+   font-weight: 500;
+   font-size: 36px;
+   color: black;
+   text-align: center;
+   width: 100%;
+}
+
+.formLabel {
+   font-size: 16px;
+   text-align: center;
+}
+
+.imageSelect {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+
+}
+
+.previewImageBox {
+   text-align: center;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   max-height: 160px;
+   overflow-x: scroll;
+}
+
+.imageUploadBtn {
+   width: 100%;
+}
+
+.mainTextUploadContainer {
+   width: 600px;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.uploadGrid {
+   display: grid;
+   grid-template-areas:
+      "collegeSelect authorName checklist"
+      "rating checklistCondition checklist"
+      "writtenEntry writtenEntry checklist";
+   grid-row-gap: 2em;
+   grid-column-gap: 2em;
+}
