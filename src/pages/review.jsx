@@ -22,6 +22,7 @@ import styles from "@/styles/review.module.css";
 export default function Review() {
 
    const [files, setFiles] = useState([]);
+   const [submitButtonText, setSubmitButtonText] = useState("Submit Review");
 
    const handleImageSelect = (e) => {
       setFiles(Array.from(e.target.files));
@@ -55,7 +56,24 @@ export default function Review() {
          body: formData,
 
       })
-         .then((response) => response.json())
+         .then((response) => {
+            response.json();
+            if (response.status == 200) {
+               setSelectedCollege("");
+               setName("");
+               setCollegeRating("");
+               setCondition("Maintained");
+               setBriefReview("");
+               setRoommates(3);
+               setFiles([]);
+               setTimeout(() => {
+                  setSubmitButtonText("Submitted");
+               }, 1000);
+               setTimeout(() => {
+                  setSubmitButtonText("Submit Review");
+               }, 2000);
+            }
+         })
          .then((data) => {
             console.log(data);
          })
@@ -104,7 +122,7 @@ export default function Review() {
                            }) : <></>
                         }
                      </Box>
-                     <Button className={styles.imageUploadBtn} onClick={handleImageUpload} style={{ "color": "var(--bblue)" }} disableFocusRipple>Upload Image</Button>
+                     {/* <Button className={styles.imageUploadBtn} onClick={handleImageUpload} style={{ "color": "var(--bblue)" }} disableFocusRipple>Upload Image</Button> */}
                   </Box>
                </Box>
                <Box className={styles.mainTextUploadContainer}>
@@ -230,7 +248,7 @@ export default function Review() {
             </form >
             <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
                <Button sx={{ padding: "12px 6px", margin: "20px 0px", color: "var(--blue1)", borderRadius: "8px" }} onClick={handleReviewSubmit}>
-                  Submit Review
+                  {submitButtonText}
                </Button>
             </Box>
          </Box >

@@ -37,3 +37,4 @@ next-env.d.ts
 
 # ur mom
 /bend/.venv
+/bend/imageUploads/*

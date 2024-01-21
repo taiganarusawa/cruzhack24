@@ -51,13 +51,13 @@ function ReviewBox(props) {
             enableMouseEvents
          >
             {review.file_paths.map((path, index) => (
-               <div key={index} >
+               <div key={index} styles={{ "display": "flex", "justifyContent": "center" }}>
                   {
                      Math.abs(currentSlide - index) <= 2 ? (
                         <Box
                            component="img"
                            sx={{
-                              height: '240px',
+                              maxHeight: '240px',
                               display: 'block',
                               maxWidth: 400,
                               overflow: 'hidden',
@@ -98,7 +98,7 @@ function ReviewBox(props) {
          />
          <Paper elevation={0} className={styles.reviewInfoCont}>
             <Box className={styles.reviewInfoTitleCont}>
-               <Typography className={styles.reviewInfoTitle}>{review.title ? review.title : "No title provided"}</Typography>
+               <Typography className={styles.reviewInfoTitle}>{review.title ? review.title : review.user_name + "\'s review"}</Typography>
                <Box className={styles.starBox}>
                   <Rating name="read-only" value={review.college_rating} precision={.5} readOnly style={{ color: 'var(--byellow)' }} />
                </Box>

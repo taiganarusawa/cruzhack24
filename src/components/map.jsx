@@ -7,7 +7,7 @@ async function initMap() {
    const { Map } = await google.maps.importLibrary("maps");
    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-   const center = { lat: 36.9914, lng: -122.0583};
+   const center = { lat: 36.9914, lng: -122.0583 };
    const map = new Map(document.getElementById("map"), {
       mapId: "5aaced86c28e57ee",
       disableDefaultUI: true,
@@ -34,6 +34,21 @@ async function initMap() {
       marker.addListener("click", () => {
          window.location.href = getCollegeLink(college.name);
       });
+
+      marker.content.style.backgroundColor = "rgb(36, 88, 149)";
+
+      marker.content.addEventListener("mouseenter", (e) => {
+         let marker = e.target;
+         marker.style.zIndex = 3;
+         marker.style.backgroundColor = "rgb(39, 116, 203)";
+      })
+
+      marker.content.addEventListener("mouseleave", (e) => {
+         let marker = e.target;
+         marker.style.zIndex = 1;
+         marker.style.backgroundColor = "rgb(36, 88, 149)";
+      })
+
    });
 }
 
@@ -90,7 +105,7 @@ const collegeList = [
    },
    {
       name: "Cowell College",
-      position: { lat: 36.997, lng: -122.055 },
+      position: { lat: 36.997113415311944, lng: -122.05456063747579 },
    },
    {
       name: "Stevenson College",

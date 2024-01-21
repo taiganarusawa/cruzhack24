@@ -11,8 +11,8 @@ const Nav = () => {
    return (
       <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
          <div className="navbar-brand">
-            <a className="navbar-item">
-               <h3><strong>SLADE</strong></h3>
+            <a className="navbar-item" style={{ userSelect: "none", "cursor": "default" }}>
+               <h3><strong style={{ "color": "var(--bblue)" }}>SlugHaus</strong></h3>
             </a>
 
             <a
@@ -72,7 +72,7 @@ const Nav = () => {
                   </div>
                </div>
                <Link href="/review" className="navbar-item">
-                  Reviews
+                  Review
                </Link>
                <div className="navbar-item has-dropdown is-hoverable">
                   <a className="navbar-link">More</a>
