@@ -125,7 +125,7 @@
 
 .reviewInfoMain {
    padding-top: 8px;
-   border-top: 1px var(--jet) solid;
+   border-top: .5px #bababa solid;
    max-height: 135px;
    overflow-y: scroll;
 }
