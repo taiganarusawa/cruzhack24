@@ -12,7 +12,7 @@ const Nav = () => {
       <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
          <div className="navbar-brand">
             <a className="navbar-item">
-               <h3><strong>SLADE</strong></h3>
+               <h3><strong>SlugHaus</strong></h3>
             </a>
 
             <a
@@ -74,14 +74,6 @@ const Nav = () => {
                <Link href="/review" className="navbar-item">
                   Reviews
                </Link>
-               <div className="navbar-item has-dropdown is-hoverable">
-                  <a className="navbar-link">More</a>
-                  <div className="navbar-dropdown">
-                     <Link href="/about" className="navbar-item">
-                        About
-                     </Link>
-                  </div>
-               </div>
             </div>
 
             <div className="navbar-end">
