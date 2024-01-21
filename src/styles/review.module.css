@@ -10,16 +10,38 @@
 .formControlBox {
    display: flex;
    justify-content: center;
-
    margin-top: 20px;
+   width: 100vw;
+   position: relative;
+
 }
 
 .imageUploadRoot {
+
+   flex-grow: 1.5;
    /* display: flex;
    justify-content: center;
    flex-wrap: wrap; */
 
-   /* width: 200px; */
+   width: 20vw;
+   margin-right: 20px;
+   margin-left: 20px;
+
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+
+   position: relative;
+}
+
+.imageUploadCont {
+   position: absolute;
+   top: calc(50%);
+   transform: translateY(-50%);
+}
+
+.imageUploadBtn {
+   height: 40px;
 }
 
 .formUploadTitle {
@@ -57,18 +79,20 @@
 }
 
 .mainTextUploadContainer {
-   width: 600px;
-   display: flex;
-   justify-content: center;
-   flex-wrap: wrap;
+   /* width: 600px; */
+   /* display: flex; */
+   /* justify-content: center; */
+   /* flex-wrap: wrap; */
+   flex-grow: 2;
 }
 
 .uploadGrid {
+
    display: grid;
    grid-template-areas:
       "collegeSelect authorName checklist"
       "rating checklistCondition checklist"
-      "writtenEntry writtenEntry checklist";
+      "writtenEntry writtenEntry roommateCount";
    grid-row-gap: 2em;
    grid-column-gap: 2em;
 }
